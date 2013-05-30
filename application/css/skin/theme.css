@@ -1,0 +1,77 @@
+/* COLOUR */
+.th-base
+{
+	background-color: #3D3D4B;
+}
+
+header,
+.score
+{
+	background-color: #000;
+}
+
+
+.tertiary {
+	background-color: #222224;
+}
+
+.ui .ctrl,
+.ide {
+	background-color: #000;
+}
+
+
+/* this is a grid based gradient */
+.grid {
+	background-image:
+		-webkit-repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.5) 1px, transparent 2px, transparent 10px),
+		-webkit-repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 2px, transparent 10px),
+		-webkit-repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.25) 1px, transparent 2px, transparent 100px),
+		-webkit-repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 2px, transparent 100px);
+	background-image:
+		-moz-repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.5) 1px, transparent 2px, transparent 10px),
+		-moz-repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 2px, transparent 10px),
+		-moz-repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.25) 1px, transparent 2px, transparent 100px),
+		-moz-repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 2px, transparent 100px);
+	background-image:
+		-o-repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.5) 1px, transparent 2px, transparent 10px),
+		-o-repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 2px, transparent 10px),
+		-o-repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.25) 1px, transparent 2px, transparent 100px),
+		-o-repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 2px, transparent 100px);
+	background-image:
+		repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.5) 1px, transparent 2px, transparent 10px),
+		repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 2px, transparent 10px),
+		repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.25) 1px, transparent 2px, transparent 100px),
+		repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 2px, transparent 100px);
+	background-size:
+		10px 10px,
+		10px 10px,
+		100px 100px,
+		100px 100px;
+}
+
+.universe {
+	border: 1px solid #787891;
+}
+
+/* FONT COLOURS */
+/*----------------------------------------------------------------------------*/
+.primary, header {
+    color: #FFC200;
+}
+
+.status.stagnation {
+	color: #33CCCC;
+}
+
+.status.equilibrium {
+	color: #9FC653;
+}
+
+.status.dead {
+	color: #FF2300;
+}
+
+.ui {
+	color : #fff;
+}

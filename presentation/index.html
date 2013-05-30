@@ -1,0 +1,757 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Game of Life</title>
+
+        <meta name="description" content="A shaggy dog story about one developers journey while writing Conway's Game of Life">
+        <meta name="author" content="Marcus Kielly">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+        <!-- <link rel="stylesheet" href="css/gol.css" id="theme"> -->
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/idea.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!-- my stylesheet -->
+        <link rel="stylesheet" href="css/presentation.css">
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides" id="slides">
+
+                <!-- The Start -->
+                <section>
+                    <h1>Game of Life</h1>
+                    <p><em>Marcus Kielly</em></p>
+                </section>
+
+                <!-- THE GAME OF LIFE -->
+                <section>
+
+                    <section>
+                        <img src="img/gameoflife.jpg" alt="game of life">
+                    </section>
+
+                    <section>
+                        <p>No, not that one</p>
+                    </section>
+
+                    <section>
+                        <h2>John Conway</h2>
+                        <img src="./img/conway.jpg" alt="John Horton Conway">
+                        <p><em>(possibly a wizard)</em></p>
+                    </section>
+
+                    <section>
+                        <h2>John Von Neumann</h2>
+                        <img src="./img/vonneumann.jpg" alt="John Von Neumann">
+                        <p>worked on the Manhattan Project</p>
+                    </section>
+
+                    <section>
+                        <h2>cellular automata</h2>
+                        <p>hypothetical machine capable of self replication</p>
+                    </section>
+
+                    <section>
+                        <h2>The Rules</h2>
+                    </section>
+
+                    <section>
+                        <p>live cells with fewer than two live neighbours die</p>
+                        <img src="img/rule1.jpg" alt="rule 1">
+                    </section>
+
+                    <section>
+                        <p>live cells with two or three live neighbours survive</p>
+                        <img src="img/rule2.jpg" alt="rule 2">
+                    </section>
+
+
+                    <section>
+                        <p>live cells with more than three live neighbours die</p>
+                        <img src="img/rule3.jpg" alt="rule 3">
+                    </section>
+
+                    <section>
+                        <p>dead cells with exactly three live neighbours become live</p>
+                        <img src="img/rule4.jpg" alt="rule 4">
+                    </section>
+
+                    <section>
+                        <p>these simple rules give rise to complex, emergent "lifeforms"</p>
+                    </section>
+
+                    <section>
+                        <h2>Gliders</h2>
+                        <img src="img/glider.gif" alt="glider">
+                    </section>
+
+                    <section>
+                        <h2>Spaceships</h2>
+                        <img src="img/spaceship.gif" alt="spaceship">
+                    </section>
+
+                    <section>
+                        <h2>Glider Guns</h2>
+                        <img src="img/ggg.gif" alt="gosper glider gun">
+                    </section>
+
+                    <section>
+                        <p>WAT!</p>
+                        <img src="./img/terminator.gif" alt="terminator">
+                    </section>
+
+                </section>
+
+
+                <!-- THE STACK -->
+                <section>
+
+                    <section>
+                        <h2>The Stack</h2>
+                    </section>
+
+                    <section>
+                        <h3>Backbone</h3>
+                        <p>Javascript library promoting Model View structuring of applications</p>
+                    </section>
+
+                    <section>
+                        <h3>Underscore</h3>
+                        <p>Functional programming library</p>
+                    </section>
+
+
+                    <section>
+                        <h3>RequireJS</h3>
+                        <p>Script loader &amp; compressor that utilises the AMD* pattern</p>
+                        <p><em>*Asynchronous Module Definition</em></p>
+                    </section>
+
+                </section>
+
+                <!-- AMD -->
+                <section>
+
+                    <section>
+                        <h2>Level One:</h2>
+                        <p>Loading....</p>
+                    </section>
+
+                    <section>
+                        <p>define modules</p>
+                        <pre><code class="javascript">
+define(['foo', 'bar', 'baz'], function (Foo, Bar, Baz) {
+    // totes encapsulated code
+})
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>shims and shortcuts</p>
+                        <pre><code class="javascript">
+requirejs.config({
+  baseUrl: './js/',
+  paths: {
+    jquery     : 'vendor/jquery-1.8.3.min',
+    underscore : 'vendor/lodash',
+    backbone   : 'vendor/backbone',
+  }
+});
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>bootstrap</p>
+                        <pre><code class="javascript">
+require(['view', 'model', 'config'],
+    function(View, Model, config) {
+        universe = new View({
+            model : new Model(config)
+        })
+    });
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>start the engine!</p>
+                        <pre><code class="javascript">
+&lt;script data-main="./js/app.js" src="./js/vendor/require.js"&gt;&lt;/script&gt;
+                        </code></pre>
+                    </section>
+
+
+                </section>
+
+
+                <!-- COLLECTING -->
+                <section>
+                    <section>
+                        <h2>Level Two:</h2>
+                        <p>Collect the things!</p>
+                    </section>
+
+                    <section>
+                        <h3>Map</h3>
+                        <pre><code class="javascript">
+_.map(list, function (element, iterator, list) {
+    // anything returned from here
+    // will get passed into a new list
+});
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>get a list of co-ordinates</p>
+                        <pre><code class="javascript">
+gol.delta = function (row, col, cells, bound) {
+    var l1 = cells.length - 1,
+        l2 = cells[0].length - 1;
+    return _.map([
+            [-1, -1], [-1, 0], [-1, 1],
+            [0, -1], [0, 1],
+            [1, -1], [1, 0], [1, 1]
+        ], function (off) {
+            return [
+    list.offset(row, off[0], l1, bound),
+    list.offset(col, off[1], l2, bound)
+            ];
+        });
+};
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>get the values of the cells at the co-ordinates</p>
+                        <pre><code class="javascript">
+gol.scan = function (row, col, cells, bound) {
+    return _.map(
+        gol.delta(row, col, cells, bound),
+        function (xy) {
+            return cells
+                .slice(xy[0], xy[0]+1)[0]
+                .slice(xy[1], xy[1]+1)[0];
+        });
+};
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>apply the rules to this cell</p>
+                        <pre><code class="javascript">
+gol.resolve = function (cell, neighbours) {
+    return cell === 1
+        ? number.between(neighbours, 2, 3)
+        : neighbours === 3
+};
+                        </code></pre>
+                    </section>
+
+                </section>
+
+                <!-- USER INTERFACE -->
+                <section>
+
+                    <section>
+                        <h2>Level Three:</h2>
+                        <p>Grab the joystick!</p>
+                    </section>
+
+                    <section>
+                        <p>bind a Backbone view to the controls</p>
+                        <pre><code class="javascript">
+Backbone.View.extend({
+    el: "#ui", //proxies jquery
+    initialize : function () {
+        self = this;
+    }
+});
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>attach class methods to events</p>
+                        <pre><code class="javascript">
+events : {
+    "click #start" : "start",
+    "click #stop" : "stop",
+    "click #reset" : "reset",
+}
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>define handlers</p>
+                    </section>
+
+                    <section>
+                        <p>start</p>
+                        <pre><code class="javascript">
+start : function (e) {
+    e.stopPropagation();
+    Base.pubSub.trigger('ui.start');
+    return false;
+}
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>stop</p>
+                        <pre><code class="javascript">
+    stop : function (e) {
+        e.stopPropagation();
+        Base.pubSub.trigger('ui.stop');
+        return false;
+    }
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>reset</p>
+                        <pre><code class="javascript">
+    reset : function (e) {
+        e.stopPropagation();
+        Base.pubSub.trigger('ui.reset');
+        return false;
+    }
+                        </code></pre>
+                    </section>
+
+                </section>
+
+                <!-- THE UNIVERSE -->
+                <section>
+                    <section>
+                        <h2>Level Four:</h2>
+                    </section>
+
+                    <section data-state='universe'>
+                        <h1>The Universe</h1>
+                    </section>
+
+                    <section>
+                        <h2>Model</h2>
+                    </section>
+
+                    <section>
+                        <p>generate a grid of zeroes</p>
+                        <pre><code class="javascript">
+Backbone.Model.extend({
+    initialize : function () {
+        self = this;
+        this.set({
+            x : config.x ? config.x : 0,
+            y : config.y ? config.y : 0,
+            cells : this.generate(config.x, config.y)
+        });
+    }
+});
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>update all cells according to the rules</p>
+                        <pre><code class="javascript">
+evolve : function () {
+    return _.map(
+    startState,
+    function (currentRow, nRow) {
+        return _.map(currentRow,
+            function (currentCell, nCol) {
+            return gol.resolve(
+                currentCell,
+                gol.findLive(
+                    nRow, nCol
+                    startState)
+                );
+    });
+});
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>broadcast changes</p>
+                        <pre><code class="javascript">
+this.set({
+    cells : nextState
+});
+
+this.trigger('universe.evolve', nextState);
+
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>View</h2>
+                    </section>
+
+                    <section>
+                        <p>bind methods to changes in model</p>
+                        <pre><code class="javascript">
+return Backbone.View.extend({
+    el : $('#universe'),
+    initialize : function () {
+    self = this;
+    this.ctx = this.el.getContext('2d');
+
+    this.listenTo(this.model, "mutate",
+        this.mutate);
+
+    this.listenTo(this.model, "evolve",
+        this.render);
+    }
+});
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>mutate</p>
+                        <pre><code class="javascript">
+mutate : function (o) {
+    var x = o.col * config.scale,
+        y = o.row * config.scale,
+        s = config.scale;
+    if (o.state) {
+        this.ctx.fillRect(x, y, s, s);
+     } else {
+        this.ctx.clearRect(x, y, s, s);
+     }
+},
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>evolve</p>
+                        <pre><code class="javascript">
+render : function () {
+    var cells = self.model.get('cells'),
+        s = config.scale;
+
+    _.each(cells, function (row, iRow) {
+        _.each(row, function (cell, iCol) {
+            if(cell) {
+                self.ctx.fillRect(
+                    iCol * s, iRow * s, s, s
+                );
+            }})
+    });
+}
+                        </code></pre>
+                    </section>
+
+                </section>
+
+                <!-- PERFORMANCE -->
+                <section>
+                    <section>
+                        <h2>Level Five:</h2>
+                        <p><em>Vro<span class='m'>ooo</span><span class='l'>om!</span></em></p>
+                    </section>
+
+                    <section>
+                        <h3>Canvas</h3>
+                        <p class="fragment">minimise draw requests</p>
+                        <p class="fragment">separate canvas objects for Universe and Cursor</p>
+                        <p class="fragment">quantized cursor updates</p>
+                    </section>
+
+                    <section>
+                        <p><del>setInterval</del></p>
+                        <pre><code class="javascript">
+start.click(function (ev) {
+    ticker = window.setInterval(function () {
+        state = jgol.evolve(state);
+        render(state);
+    }, 50);
+});
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>requestAnimationFrame!</p>
+                        <pre><code class="javascript">
+loop : function (runAnimation) {
+    if(runAnimation.value) {
+        window.requestAnimationFrame(
+            function () {
+                Base.pubSub.trigger(
+                'universe.evolve'
+                );
+            self.loop(runAnimation);
+        });
+    }
+},
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Underscore</h3>
+                    </section>
+
+                    <section>
+                        <h3><del>Underscore</del></h3>
+                        <h3><strong>Lo-Dash!</strong></h3>
+                    </section>
+
+                    <section>
+                        <h2>John David Dalton</h2>
+                        <img src="./img/dalton.jpg" alt="John David Dalton">
+                        <p>LoDash &amp; jsPerf</p>
+                    </section>
+
+                    <section>
+                        <p>Underscore delegates to native Array.map</p>
+                        <p class="fragment">slower than for loop</p>
+                        <p class="fragment">Lo-Dash fixes many performance issues</p>
+                    </section>
+
+
+                    <section>
+                        <h3>State</h3>
+                        <p class="fragment">how to detect when universe has become stagnant</p>
+                        <p class="fragment">too expensive to scan whole universe...</p>
+                        <p class="fragment">...not to mention memory consumption</p>
+                    </section>
+
+                    <section>
+                            <p>store hash of universe on each iteration!</li>
+                                <pre><code class="javascript">
+history.push(hex_md5(JSON.stringify(state)));
+                                </code></pre>
+                    </section>
+
+                    <section>
+                            <p>if the pattern is repeating, it's stagnant</li>
+                                <pre><code class="javascript">
+[
+'7ccbb009854ad1ec22fdb24217bf07f2',
+'4aa6cce2c21603b7191a5cd1d3ac3c84',
+'7ccbb009854ad1ec22fdb24217bf07f2',
+'4aa6cce2c21603b7191a5cd1d3ac3c84',
+'7ccbb009854ad1ec22fdb24217bf07f2',
+'4aa6cce2c21603b7191a5cd1d3ac3c84',
+'7ccbb009854ad1ec22fdb24217bf07f2',
+'4aa6cce2c21603b7191a5cd1d3ac3c84',
+]
+                                </code></pre>
+                    </section>
+
+                </section>
+
+                <!-- CRITIQUE -->
+                <section>
+                    <h2>PROS & CONS</h2>
+                </section>
+
+                <section>
+
+                    <section>
+                        <h2>Backbone</h2>
+                    </section>
+
+
+                    <section>
+                        <ul>
+                            <li>popular</li>
+                            <li class="fragment">minimal</li>
+                            <li class="fragment">fast</li>
+                            <li class="fragment">extendable</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <p>Nice querying ability on Collections:</p>
+                        <pre><code class="javascript">
+var friends = new Backbone.Collection([
+  {name: "Athos",      job: "Musketeer"},
+  {name: "Porthos",    job: "Musketeer"},
+  {name: "Aramis",     job: "Musketeer"},
+  {name: "d'Artagnan", job: "Guard"},
+]);
+
+var musketeers = friends.where({job: "Musketeer"});
+
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>maps well to MongoDB...</p>
+                        <pre><code conteneditable class="javascript">
+// Backbone
+collection.where({ field : value });
+
+// MongoDB
+db.collection.find({ field: value })
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <p>...but serialising doesn't export nested models...</p>
+                        <pre class="fragment"><code class="javascript">
+var A = Backbone.Model.extend({}),
+    B = Backbone.Model.extend({}),
+    a, b;
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <pre><code class="javascript">
+a = new A({
+    batman : 'robin',
+});
+
+b = new B({
+    foo : 'tom',
+    bar : 'dick',
+    baz : a
+});
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <pre><code class="javascript">
+console.log(b.parse());//converts to json
+Object {
+    foo: "tom",
+    bar: "dick",
+    baz: child // uh-oh
+}
+                        </code></pre>
+                    </section>
+
+                </section>
+
+                <section>
+                    <p>automatic Model/View updates?</p>
+                    <p class="fragment">not really... requires a lot of hand cranking</p>
+                    <pre class="fragment"><code class="javascript">
+this.listenTo(this.model, "mutate", this.mutate);
+
+this.listenTo(this.model, "evolve", this.render);
+                    </code></pre>
+                </section>
+
+                 <section>
+                    <p>cool event handling</p>
+                    <p class="fragment">event framework hidden away</p>
+                    <pre class="fragment"><code class="javascript">
+// patches Backbone to add pubsub to entire namespace
+define(['underscore', 'backbone'],
+    function (_, Backbone) {
+    return _.extend(Backbone, {
+        pubSub : _.extend(
+            {}, Backbone.Events
+        )
+    });
+});
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>a library, not a framework</p>
+                    <p class="fragment">requires extensive patching</p>
+                    <ul>
+                        <li class="fragment roll-in"><a href="Backbone Marionette : http://marionettejs.com/" target="_blank">Marionette</a></li>
+                        <li class="fragment roll-in"><a href="http://chaplinjs.org/" target="_blank">Chaplin</a></li>
+                        <li class="fragment roll-in"><a href="http://thoraxjs.org/" target="_blank">Thorax</a></li>
+                    </ul>
+                </section>
+
+                <!-- REQUIRE JS -->
+                <section>
+
+                    <section>
+                        <h2>requireJS</h2>
+                        <p>dependency Injection is great!</p>
+                        <p class="fragment">avoids namespace pollution
+                        <p class="fragment">Comes with build tool!</p>
+                        <p class="fragment">...but only a handful of 3rd party libs support AMD</p>
+                    </section>
+
+                    <section>
+                        <p>incompatible with ECMA6/Harmony module spec...</p>
+                        <pre><code class="javascript">
+import "crypto" as crypto;
+import { encrypt, decrypt } from "crypto";
+import { encrypt: enc } from "crypto";
+export * from "crypto";
+export { foo, bar } from "crypto";
+
+module "foo" {
+    export let x = 42;
+}
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Lo-Dash</h2>
+                            <img class="fragment" src="./img/boom.jpg" alt="boom"/>
+                    </section>
+
+                </section>
+
+
+                <section>
+                    <h2>GAME OVER!</h2>
+                    <p><a href="https://bitbucket.org/sunwukung/game-of-life">https://bitbucket.org/sunwukung/game-of-life</a></p>
+                </section>
+
+
+            </div>
+        </div>
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                keyboard : true,
+                autoHome: true,
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+                width : '800', // for small projectors
+                height : '600',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+
+        </script>
+
+        <!--
+        <script src="./js/zepto.min.js"></script>
+        <script>
+        $('#slides').attr({'width':'80%'});
+        </script>
+    -->
+    </body>
+</html>

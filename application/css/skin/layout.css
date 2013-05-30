@@ -1,0 +1,68 @@
+header
+{
+	padding: 10px 0px 20px 0px;
+}
+/* TOP LEVEL */
+
+.content {
+	height: 100%;
+}
+
+.primary {
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.ide {
+	position : relative;
+	top: 0px;
+	left: 0px;
+	padding : 30px;
+	margin-bottom: 10px;
+}
+
+.ctx {
+	position: absolute;
+	top: 30px;
+	left: 30px;
+}
+
+.cursor {
+	margin : 1px 0 0 1px;
+}
+
+/* CTRL */
+.ctrl:hover {
+	cursor: pointer;
+}
+
+.ui {
+	margin-bottom: 40px;
+}
+
+.ctrls {
+	float: left;
+}
+.ui .ctrl {
+	display: inline-block;
+	padding: 5px 20px;
+	margin-right : 5px;
+}
+
+/* SCORE */
+.score {
+	float : right;
+}
+
+/* STATUS */
+.status {
+
+	clear: both;
+	text-align: center;
+}
+
+
+
+
+
+

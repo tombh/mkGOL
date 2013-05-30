@@ -1,0 +1,103 @@
+/*
+Type CSS for site
+by Marcus Kielly
+http://deckchair.co.uk
+*/
+
+/* Font Families */
+/*----------------------------------------------------------------------------*/
+
+/*
+@font-face {
+	font-family: 'CartoGothic';
+	src: url('./../../fonts/CartoGothicStd-Bold-webfont.ttf');
+}
+*/
+
+@font-face {
+    font-family: 'SilkscreenNormal';
+    src: url('./../../fonts/Silkscreen/slkscr-webfont.eot');
+    src: url('./../../fonts/Silkscreen/slkscr-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./../../fonts/Silkscreen/slkscr-webfont.woff') format('woff'),
+         url('./../../fonts/Silkscreen/slkscr-webfont.ttf') format('truetype'),
+         url('./../../fonts/Silkscreen/slkscr-webfont.svg#SilkscreenNormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SilkscreenBold';
+    src: url('./../../fonts/Silkscreen/slkscrb-webfont.eot');
+    src: url('./../../fonts/Silkscreen/slkscrb-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./../../fonts/Silkscreen/slkscrb-webfont.woff') format('woff'),
+         url('./../../fonts/Silkscreen/slkscrb-webfont.ttf') format('truetype'),
+         url('./../../fonts/Silkscreen/slkscrb-webfont.svg#SilkscreenBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'UnibodyBlack';
+    src: url('./../../fonts/Unibody/Unibody-Black.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'UnibodyRegular';
+    src: url('./../../fonts/Unibody/Unibody-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'UnibodyBold';
+    src: url('./../../fonts/Unibody/Unibody-Bold.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body,textarea {
+    font-family: Myriad Web Pro, Arial, Verdana,  Lucida Grande, Helvetica, sans-serif;
+}
+
+
+div#nav_main ul li,
+h1,h2,h3
+{
+    font-family: UnibodyBold;
+}
+
+/* Font Sizes */
+.axis {
+	font-size: 10px;
+}
+
+/*----------------------------------------------------------------------------*/
+h1 {
+    text-align: center;
+}
+
+/*----------------------------------------------------------------------------*/
+
+/* FONT WEIGHTS */
+/*----------------------------------------------------------------------------*/
+#launchmenu {
+    font-weight: bold;
+}
+
+/* -9999px */
+/*----------------------------------------------------------------------------*/
+.button{
+    display:block;
+    font-size:0;
+    line-height:0;
+    text-indent:-9999px;
+}
+
+
+
+
+
+

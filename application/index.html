@@ -1,0 +1,56 @@
+<!DOCTYPE>
+<html>
+    <head>
+      <!-- libraries -->
+      <link rel="stylesheet" type="text/css" media="screen" href="./css/lib/mod.css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="./css/lib/grids.css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="./css/lib/core.css" />
+      <!-- skin -->
+      <link rel="stylesheet" type="text/css" media="screen" href="./css/skin/layout.css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="./css/skin/theme.css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="./css/skin/effects.css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="./css/skin/type.css" />
+    </head>
+  <body class='th-base'>
+    <div id="wrap">
+      <div id="main" class="clearfix">
+
+        <div id="menu">
+          <header>
+            <h1>game of life</h1>
+          </header>
+        </div>
+        <div id="feedback" class="feedback"></div>
+
+        <div id="content" class="content">
+
+          <section id="primary" class="primary">
+
+            <div id="ui" class="ui">
+                <ul id="ctrl" class="ctrls">
+                  <li id="start" class="ctrl">start</li>
+                  <li id="stop" class="ctrl">stop</li>
+                  <li id="reset" class="ctrl">reset</li>
+                </ul>
+
+                <h2 id="score" class="score">000000000</h2>
+            </div>
+
+            <div id="wrapper" class="ide unit">
+                <canvas id="universe" class="universe unit ctx"></canvas>
+                <canvas id="cursor" class="cursor unit ctx"></canvas>
+            </div>
+
+            <h2 id="status" class="status"></h2>
+
+          </section>
+
+        </div>
+      </div>
+    </div>
+    <audio src="./media/daftpunk_getlucky.m4a" id="tune"></audio>
+    <footer></footer>
+    <script src="./js/lib/md5.js"></script>
+    <script data-main="./js/app.js" src="./js/vendor/require.js"></script>
+  </body>
+</html>
